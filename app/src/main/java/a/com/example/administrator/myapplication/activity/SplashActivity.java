@@ -5,6 +5,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.sql.Time;
@@ -16,6 +18,9 @@ import a.com.example.administrator.myapplication.R;
 
 public class SplashActivity extends AppCompatActivity {
     private TextView tv_version;
+    private Button close_button;
+    private Timer timer;
+    private TimerTask task;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +40,9 @@ public class SplashActivity extends AppCompatActivity {
             tv_version.setText("V");
         }
         //创建Timer类对象
-        Timer timer = new Timer();
+        timer = new Timer();
         //通过 TimerTask 类实现界面跳转的功能
-        TimerTask task = new TimerTask() {
+        task = new TimerTask() {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashActivity.this,MainActivity.class);
@@ -47,5 +52,18 @@ public class SplashActivity extends AppCompatActivity {
         };
         //设置程序延迟 3 秒之后自动执行任务 task
         timer.schedule(task,3000);
+        //设置点击事件,点击按钮也可以关闭开屏画面，实现界面跳转
+        close_button = findViewById(R.id.close_button);
+        close_button.setOnClickListener(new View.OnClickListener(){
+             public void onClick(View view){
+                 // 取消定时任务
+                 task.cancel();
+                 timer.cancel(); // 需要同时取消Timer，因为TimerTask.cancel()只能取消单个任务
+                 Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                 startActivity(intent);
+                 SplashActivity.this.finish();
+            }
+        });
     }
+
 }

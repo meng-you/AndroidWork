@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/register_bg"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
     <include layout="@layout/main_title_bar"/>
     <ImageView
         android:layout_width="70dp"
@@ -19,6 +21,16 @@
         android:drawableLeft="@drawable/user_name_icon"
         android:gravity="center_vertical"
         android:hint="请输入用户名" />
+    <TextView
+        android:id="@+id/tv_user_name_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@android:color/darker_gray"
+        android:text=""
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp" />
     <EditText
         android:id="@+id/et_psw"
         style="@style/etRegisterStyle"
@@ -26,6 +38,16 @@
         android:drawableLeft="@drawable/psw_icon"
         android:hint="请输入密码"
         android:inputType="textPassword" />
+    <TextView
+        android:id="@+id/tv_psw_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@android:color/darker_gray"
+        android:text=""
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp" />
     <EditText
         android:id="@+id/et_psw_again"
         style="@style/etRegisterStyle"

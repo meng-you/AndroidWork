@@ -27,6 +27,26 @@ public class UtilsHelper {
         //将用户名和密码封装到编辑器对象 editor 中
         editor.putString(userName,md5Psw);
         editor.commit();//提交保存信息
-
+    }
+    //根据用户名读取 SharedPreferences 文件中的密码
+    public static String readPsw(Context context,String userName){
+        SharedPreferences sp=context.getSharedPreferences("loginInfo",
+                Context.MODE_PRIVATE);
+        String spPsw=sp.getString(userName, "");
+        return spPsw;
+    }
+    //保存登录状态与用户名
+    public static void saveLoginStatus(Context context,
+                                       boolean status,String userName){
+        SharedPreferences sp= context.getSharedPreferences
+                ("loginInfo",Context.MODE_PRIVATE);
+        //获取编辑器
+        SharedPreferences.Editor editor=sp.edit();
+        //存入 boolean 类型的登录状态
+        editor.putBoolean("isLogin", status);
+        //存入登录时的用户名
+        editor.putString("loginUserName", userName);
+        //提交修改
+        editor.commit();
     }
 }

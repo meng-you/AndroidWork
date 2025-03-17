@@ -45,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
         task = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
+                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
                 startActivity(intent);
                 SplashActivity.this.finish();
             }
@@ -59,7 +59,7 @@ public class SplashActivity extends AppCompatActivity {
                  // 取消定时任务
                  task.cancel();
                  timer.cancel(); // 需要同时取消Timer，因为TimerTask.cancel()只能取消单个任务
-                 Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
+                 Intent intent = new Intent(SplashActivity.this,MainActivity.class);
                  startActivity(intent);
                  SplashActivity.this.finish();
             }

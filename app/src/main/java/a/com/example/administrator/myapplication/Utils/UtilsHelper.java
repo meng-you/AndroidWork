@@ -49,4 +49,32 @@ public class UtilsHelper {
         //提交修改
         editor.commit();
     }
+    //获取登录状态
+    public static boolean readLoginStatus(Context context) {
+        SharedPreferences sp = context.getSharedPreferences
+                ("loginInfo",Context.MODE_PRIVATE);
+        boolean isLogin = sp.getBoolean("isLogin", false);
+        return isLogin;
+    }
+    //清除登录状态与用户名
+    public static void clearLoginStatus(Context context) {
+        SharedPreferences sp = context.getSharedPreferences
+                ("loginInfo",Context.MODE_PRIVATE);
+        //获取编辑器
+        SharedPreferences.Editor editor = sp.edit();
+        //清除登录状态
+        editor.putBoolean("isLogin", false);
+        //清除登录时的用户名
+        editor.putString("loginUserName", "");
+        //提交修改
+        editor.commit();
+    }
+    //获取登录时的用户名
+    public static String readLoginUserName(Context context){
+        SharedPreferences sp=context.getSharedPreferences
+                ("loginInfo",Context.MODE_PRIVATE);
+        String userName=sp.getString("loginUserName", "");
+        return userName;
+    }
+
 }

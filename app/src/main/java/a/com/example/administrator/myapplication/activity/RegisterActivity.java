@@ -69,7 +69,14 @@ public class RegisterActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable editable) {
-                validateUsername(editable.toString());
+                isUsernameValid = UtilsHelper.validateUsername(RegisterActivity.this,editable.toString());
+                if (isUsernameValid) {
+                    tv_user_name_msg.setText("当前用户名可用.");
+                    tv_user_name_msg.setTextColor(ContextCompat.getColor(RegisterActivity.this, android.R.color.holo_green_dark));
+                } else {
+                    tv_user_name_msg.setText("当前用户名重复，请更换.");
+                    tv_user_name_msg.setTextColor(ContextCompat.getColor(RegisterActivity.this, android.R.color.holo_red_dark));
+                }
             }
         });
         //实时判断输入的密码是否为混合字母和数字
@@ -82,7 +89,14 @@ public class RegisterActivity extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable editable) {
-                validatePassword(editable.toString());
+                isPasswordValid = UtilsHelper.validatePassword(editable.toString());
+                if (isPasswordValid) {
+                    tv_psw_msg.setText("当前密码为数字和字母混合.");
+                    tv_psw_msg.setTextColor(ContextCompat.getColor(RegisterActivity.this, android.R.color.holo_green_dark));
+                } else {
+                    tv_psw_msg.setText("请输入数字和字母混合的密码.");
+                    tv_psw_msg.setTextColor(ContextCompat.getColor(RegisterActivity.this, android.R.color.holo_red_dark));
+                }
             }
         });
 
@@ -139,46 +153,46 @@ public class RegisterActivity extends AppCompatActivity {
         pswAgain = et_psw_again.getText().toString().trim();
     }
 
-    //判断是否用户名重复，根据不同结果给出不同提示
-    private void validateUsername(String username){
-        if (UtilsHelper.isExistUserName(RegisterActivity.this, username)){
-            isUsernameValid = false;
-        }else {
-            isUsernameValid = true;
-        }
-        if (isUsernameValid) {
-            tv_user_name_msg.setText("当前用户名可用.");
-            tv_user_name_msg.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
-        } else {
-            tv_user_name_msg.setText("当前用户名重复，请更换.");
-            tv_user_name_msg.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
-        }
-    }
+//    //判断是否用户名重复，根据不同结果给出不同提示
+//    private void validateUsername(String username){
+//        if (UtilsHelper.isExistUserName(RegisterActivity.this, username)){
+//            isUsernameValid = false;
+//        }else {
+//            isUsernameValid = true;
+//        }
+//        if (isUsernameValid) {
+//            tv_user_name_msg.setText("当前用户名可用.");
+//            tv_user_name_msg.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+//        } else {
+//            tv_user_name_msg.setText("当前用户名重复，请更换.");
+//            tv_user_name_msg.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
+//        }
+//    }
 
-    //判断是否为数字字母混合的方法,根据不同结果给出不同提示
-    private void validatePassword(String password){
-        boolean hasLetter = false;
-        boolean hasDigit = false;
-        for (char c : password.toCharArray()) {
-            if (Character.isLetter(c)) {
-                hasLetter = true;
-            } else if (Character.isDigit(c)) {
-                hasDigit = true;
-            }
-            // 同时有数字和字母退出
-            if (hasLetter && hasDigit) {
-                break;
-            }
-        }
-        //为真则表示同时有数字和字母
-        isPasswordValid = hasLetter && hasDigit;
-        //输出文本,根据输入的密码输出不同的提示
-        if (isPasswordValid) {
-            tv_psw_msg.setText("当前密码为数字和字母混合.");
-            tv_psw_msg.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
-        } else {
-            tv_psw_msg.setText("请输入数字和字母混合的密码.");
-            tv_psw_msg.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
-        }
-    }
+//    //判断是否为数字字母混合的方法,根据不同结果给出不同提示
+//    private void validatePassword(String password){
+//        boolean hasLetter = false;
+//        boolean hasDigit = false;
+//        for (char c : password.toCharArray()) {
+//            if (Character.isLetter(c)) {
+//                hasLetter = true;
+//            } else if (Character.isDigit(c)) {
+//                hasDigit = true;
+//            }
+//            // 同时有数字和字母退出
+//            if (hasLetter && hasDigit) {
+//                break;
+//            }
+//        }
+//        //为真则表示同时有数字和字母
+//        isPasswordValid = hasLetter && hasDigit;
+//        //输出文本,根据输入的密码输出不同的提示
+//        if (isPasswordValid) {
+//            tv_psw_msg.setText("当前密码为数字和字母混合.");
+//            tv_psw_msg.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
+//        } else {
+//            tv_psw_msg.setText("请输入数字和字母混合的密码.");
+//            tv_psw_msg.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
+//        }
+//    }
 }

@@ -2,7 +2,10 @@ package a.com.example.administrator.myapplication.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+
+import a.com.example.administrator.myapplication.activity.RegisterActivity;
 
 public class UtilsHelper {
     /**
@@ -76,5 +79,33 @@ public class UtilsHelper {
         String userName=sp.getString("loginUserName", "");
         return userName;
     }
-
+    //判断是否用户名重复，根据不同结果给出不同提示
+    public static boolean validateUsername(Context context,String username) {
+        boolean isUsernameValid = false;
+        if (UtilsHelper.isExistUserName(context, username)) {
+            isUsernameValid = false;
+        } else {
+            isUsernameValid = true;
+        }
+        return isUsernameValid;
+    }
+    //判断是否为数字字母混合的方法,根据不同结果给出不同提示
+    public static boolean validatePassword(String password){
+        boolean hasLetter = false;
+        boolean hasDigit = false;
+        for (char c : password.toCharArray()) {
+            if (Character.isLetter(c)) {
+                hasLetter = true;
+            } else if (Character.isDigit(c)) {
+                hasDigit = true;
+            }
+            // 同时有数字和字母退出
+            if (hasLetter && hasDigit) {
+                break;
+            }
+        }
+        //为真则表示同时有数字和字母
+        boolean isPasswordValid = hasLetter && hasDigit;
+        return isPasswordValid;
+    }
 }

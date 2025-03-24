@@ -13,6 +13,7 @@ import android.widget.Toast;
 import a.com.example.administrator.myapplication.R;
 import a.com.example.administrator.myapplication.Utils.UtilsHelper;
 import a.com.example.administrator.myapplication.activity.LoginActivity;
+import a.com.example.administrator.myapplication.activity.SettingActivity;
 
 public class MyInfoView implements View.OnClickListener {
     private Activity mContext;
@@ -66,6 +67,8 @@ public class MyInfoView implements View.OnClickListener {
             case R.id.rl_setting:
                 if (UtilsHelper.readLoginStatus(mContext)) {
                     //跳转到设置界面
+                    Intent intent=new Intent(mContext,SettingActivity.class);
+                    mContext.startActivityForResult(intent,1);
                 } else {
                     Toast.makeText(mContext, "您还未登录，请先登录",
                             Toast.LENGTH_SHORT).show();

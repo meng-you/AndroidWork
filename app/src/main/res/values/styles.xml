@@ -109,4 +109,12 @@
         <item name="android:layout_marginRight">25dp</item>
         <item name="android:src">@drawable/iv_right_arrow</item>
     </style>
+    <style name="tvFindPswStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">35dp</item>
+        <item name="android:layout_marginRight">35dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

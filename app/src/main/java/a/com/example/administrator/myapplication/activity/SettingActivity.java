@@ -55,6 +55,10 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.rl_security_setting:
                 //跳转到设置密保界面
+                Intent securityIntent =
+                        new Intent(SettingActivity.this,FindPswActivity.class);
+                securityIntent.putExtra("from", "security");
+                startActivity(securityIntent);
                 break;
             case R.id.rl_exit_login:
                 Toast.makeText(SettingActivity.this, "退出登录成功",

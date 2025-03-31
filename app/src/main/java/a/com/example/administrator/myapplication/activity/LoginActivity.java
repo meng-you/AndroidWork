@@ -76,7 +76,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivityForResult(intent, 1);
                 break;
             case R.id.tv_find_psw://"找回密码？"文本的点击事件
-                //跳转到找回密码界面（FindPswActivity 暂时还未创建）
+                //跳转到找回密码界面
+                Intent findPswIntent =
+                        new Intent(LoginActivity.this,FindPswActivity.class);
+                startActivity(findPswIntent);
                 break;
             case R.id.btn_login: //"登录"按钮的点击事件
                 userName=et_user_name.getText().toString().trim();

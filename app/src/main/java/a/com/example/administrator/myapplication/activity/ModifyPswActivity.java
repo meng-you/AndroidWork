@@ -65,52 +65,50 @@ public class ModifyPswActivity extends AppCompatActivity implements View.OnClick
     }
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_back:
-                ModifyPswActivity.this.finish();
-                break;
-            case R.id.btn_save:
-                getEditString();
-                if (TextUtils.isEmpty(originalPsw)) {
-                    Toast.makeText(ModifyPswActivity.this, "请输入原始密码",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (!MD5Utils.md5(originalPsw).equals(spOriginalPsw)) {
-                    Toast.makeText(ModifyPswActivity.this, "输入的密码与原始密码不相同",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (MD5Utils.md5(newPsw).equals(spOriginalPsw)) {
-                    Toast.makeText(ModifyPswActivity.this, "输入的新密码与原始密码不能相同",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (TextUtils.isEmpty(newPsw)) {
-                    Toast.makeText(ModifyPswActivity.this, "请输入新密码",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }else if(!isPasswordValid){
-                    Toast.makeText(ModifyPswActivity.this, "密码不是数字和字母混合，请重输",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (TextUtils.isEmpty(newPswAgain)) {
-                    Toast.makeText(ModifyPswActivity.this, "请再次输入新密码",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (!newPsw.equals(newPswAgain)) {
-                    Toast.makeText(ModifyPswActivity.this, "两次输入的新密码不一致",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    Toast.makeText(ModifyPswActivity.this, "新密码设置成功",
-                            Toast.LENGTH_SHORT).show();
-                    //保存新密码到SharedPreferences文件中
-                    UtilsHelper.saveUserInfo(ModifyPswActivity.this, userName, newPsw);
-                    Intent intent = new Intent(ModifyPswActivity.this,
-                            LoginActivity.class);
-                    startActivity(intent);
-                    SettingActivity.instance.finish(); //关闭设置界面
-                    ModifyPswActivity.this.finish();    //关闭修改密码界面
-                }
-                break;
+        int id = view.getId();
+        if (id == R.id.tv_back) {
+            ModifyPswActivity.this.finish();
+        } else if (id == R.id.btn_save) {
+            getEditString();
+            if (TextUtils.isEmpty(originalPsw)) {
+                Toast.makeText(ModifyPswActivity.this, "请输入原始密码",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            } else if (!MD5Utils.md5(originalPsw).equals(spOriginalPsw)) {
+                Toast.makeText(ModifyPswActivity.this, "输入的密码与原始密码不相同",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            } else if (MD5Utils.md5(newPsw).equals(spOriginalPsw)) {
+                Toast.makeText(ModifyPswActivity.this, "输入的新密码与原始密码不能相同",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            } else if (TextUtils.isEmpty(newPsw)) {
+                Toast.makeText(ModifyPswActivity.this, "请输入新密码",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }else if(!isPasswordValid){
+                Toast.makeText(ModifyPswActivity.this, "密码不是数字和字母混合，请重输",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            } else if (TextUtils.isEmpty(newPswAgain)) {
+                Toast.makeText(ModifyPswActivity.this, "请再次输入新密码",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            } else if (!newPsw.equals(newPswAgain)) {
+                Toast.makeText(ModifyPswActivity.this, "两次输入的新密码不一致",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                Toast.makeText(ModifyPswActivity.this, "新密码设置成功",
+                        Toast.LENGTH_SHORT).show();
+                //保存新密码到SharedPreferences文件中
+                UtilsHelper.saveUserInfo(ModifyPswActivity.this, userName, newPsw);
+                Intent intent = new Intent(ModifyPswActivity.this,
+                        LoginActivity.class);
+                startActivity(intent);
+                SettingActivity.instance.finish(); //关闭设置界面
+                ModifyPswActivity.this.finish();    //关闭修改密码界面
+            }
         }
     }
     /**

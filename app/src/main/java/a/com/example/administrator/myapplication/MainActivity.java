@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import a.com.example.administrator.myapplication.Utils.UtilsHelper;
 import a.com.example.administrator.myapplication.View.MyInfoView;
+import a.com.example.administrator.myapplication.activity.ModifyPswActivity;
+import a.com.example.administrator.myapplication.activity.SettingActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FrameLayout mBodyLayout; //中间内容栏
@@ -151,24 +153,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            //"课程"按钮的点击事件
-            case R.id.bottom_bar_course_btn:
-                setNotSelectedStatus();
-                selectDisplayView(0);
-                break;
-            //"习题"按钮的点击事件
-            case R.id.bottom_bar_exercises_btn:
-                setNotSelectedStatus();
-                selectDisplayView(1);
-                break;
-            //"我"的按钮的点击事件
-            case R.id.bottom_bar_myinfo_btn:
-                setNotSelectedStatus();
-                selectDisplayView(2);
-                break;
-            default:
-                break;
+        int id = v.getId();
+        if (id == R.id.bottom_bar_course_btn) {//"课程"按钮的点击事件
+            setNotSelectedStatus();
+            selectDisplayView(0);
+        } else if (id == R.id.bottom_bar_exercises_btn) {//"习题"按钮的点击事件
+            setNotSelectedStatus();
+            selectDisplayView(1);
+        }else if (id == R.id.bottom_bar_myinfo_btn) {//"我"的按钮的点击事件
+            setNotSelectedStatus();
+            selectDisplayView(2);
         }
     }
     /**

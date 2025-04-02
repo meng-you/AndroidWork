@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'a.com.example.administrator.myapplication'
     compileSdkVersion 35
     defaultConfig {
         applicationId "a.com.example.administrator.myapplication"

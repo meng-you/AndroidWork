@@ -44,32 +44,28 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     }
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_back:
-                this.finish();
-                break;
-            case R.id.rl_modify_psw:
-                //跳转到修改密码界面
-                Intent intent = new Intent(SettingActivity.this,ModifyPswActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.rl_security_setting:
-                //跳转到设置密保界面
-                Intent securityIntent =
-                        new Intent(SettingActivity.this,FindPswActivity.class);
-                securityIntent.putExtra("from", "security");
-                startActivity(securityIntent);
-                break;
-            case R.id.rl_exit_login:
-                Toast.makeText(SettingActivity.this, "退出登录成功",
-                        Toast.LENGTH_SHORT).show();
-                //清除登录状态和登录时的用户名
-                UtilsHelper.clearLoginStatus(SettingActivity.this);
-                Intent data = new Intent();
-                data.putExtra("isLogin", false);
-                setResult(RESULT_OK, data);
-                SettingActivity.this.finish();
-                break;
+        int id = view.getId();
+        if (id == R.id.tv_back) {
+            this.finish();
+        } else if (id == R.id.rl_modify_psw) {
+            //跳转到修改密码界面
+            Intent intent = new Intent(SettingActivity.this,ModifyPswActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.rl_security_setting) {
+            //跳转到设置密保界面
+            Intent securityIntent =
+                    new Intent(SettingActivity.this,FindPswActivity.class);
+            securityIntent.putExtra("from", "security");
+            startActivity(securityIntent);
+        } else if (id == R.id.rl_exit_login) {
+            Toast.makeText(SettingActivity.this, "退出登录成功",
+                    Toast.LENGTH_SHORT).show();
+            //清除登录状态和登录时的用户名
+            UtilsHelper.clearLoginStatus(SettingActivity.this);
+            Intent data = new Intent();
+            data.putExtra("isLogin", false);
+            setResult(RESULT_OK, data);
+            SettingActivity.this.finish();
         }
     }
 }

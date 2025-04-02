@@ -67,53 +67,48 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_back: //"返回"按钮的点击事件
-                this.finish();
-                break;
-            case R.id.tv_register: //"立即注册"文本的点击事件
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivityForResult(intent, 1);
-                break;
-            case R.id.tv_find_psw://"找回密码？"文本的点击事件
-                //跳转到找回密码界面
-                Intent findPswIntent =
-                        new Intent(LoginActivity.this,FindPswActivity.class);
-                startActivity(findPswIntent);
-                break;
-            case R.id.btn_login: //"登录"按钮的点击事件
-                userName=et_user_name.getText().toString().trim();
-                psw=et_psw.getText().toString().trim();
-                String md5Psw=MD5Utils.md5(psw);
-                spPsw=UtilsHelper.readPsw(LoginActivity.this,userName);
-                if(TextUtils.isEmpty(userName)){
-                    Toast.makeText(LoginActivity.this, "请输入用户名",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }else if(TextUtils.isEmpty(spPsw)){
-                    Toast.makeText(LoginActivity.this, "此用户名不存在",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }else if(TextUtils.isEmpty(psw)){
-                    Toast.makeText(LoginActivity.this, "请输入密码",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                } else if((!TextUtils.isEmpty(spPsw)&&!md5Psw.equals(spPsw))){
-                    Toast.makeText(LoginActivity.this, "输入的密码不正确",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }else if(md5Psw.equals(spPsw)){
-                    Toast.makeText(LoginActivity.this, "登录成功",
-                            Toast.LENGTH_SHORT).show();
-                    //保存登录状态和登录的用户名
-                    UtilsHelper.saveLoginStatus(LoginActivity.this,true,userName);
-                    //把登录成功的状态传递到 MainActivity 中
-                    Intent data=new Intent();
-                    data.putExtra("isLogin", true);
-                    setResult(RESULT_OK, data);
-                    LoginActivity.this.finish();
-                }
-                break;
+        int id = view.getId();
+        if (id == R.id.tv_back) {//"返回"按钮的点击事件
+            this.finish();
+        } else if (id == R.id.tv_register) {//"立即注册"文本的点击事件
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivityForResult(intent, 1);
+        } else if (id == R.id.tv_find_psw) {//"找回密码？"文本的点击事件
+            Intent findPswIntent =
+                    new Intent(LoginActivity.this,FindPswActivity.class);
+            startActivity(findPswIntent);
+        }else if (id == R.id.btn_login) {//"登录"按钮的点击事件
+            userName=et_user_name.getText().toString().trim();
+            psw=et_psw.getText().toString().trim();
+            String md5Psw=MD5Utils.md5(psw);
+            spPsw=UtilsHelper.readPsw(LoginActivity.this,userName);
+            if(TextUtils.isEmpty(userName)){
+                Toast.makeText(LoginActivity.this, "请输入用户名",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }else if(TextUtils.isEmpty(spPsw)){
+                Toast.makeText(LoginActivity.this, "此用户名不存在",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }else if(TextUtils.isEmpty(psw)){
+                Toast.makeText(LoginActivity.this, "请输入密码",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            } else if((!TextUtils.isEmpty(spPsw)&&!md5Psw.equals(spPsw))){
+                Toast.makeText(LoginActivity.this, "输入的密码不正确",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }else if(md5Psw.equals(spPsw)){
+                Toast.makeText(LoginActivity.this, "登录成功",
+                        Toast.LENGTH_SHORT).show();
+                //保存登录状态和登录的用户名
+                UtilsHelper.saveLoginStatus(LoginActivity.this,true,userName);
+                //把登录成功的状态传递到 MainActivity 中
+                Intent data=new Intent();
+                data.putExtra("isLogin", true);
+                setResult(RESULT_OK, data);
+                LoginActivity.this.finish();
+            }
         }
     }
 }

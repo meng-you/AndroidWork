@@ -66,53 +66,51 @@ public class FindPswActivity extends AppCompatActivity implements View.OnClickLi
     }
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_back:
-                FindPswActivity.this.finish();
-                break;
-            case R.id.btn_validate:
-                String validateName = et_validate_name.getText().toString().trim();
-                if ("security".equals(from)) {//设置密保界面
-                    if (TextUtils.isEmpty(validateName)) {
-                        Toast.makeText(FindPswActivity.this, "请输入您的姓名",
-                                Toast.LENGTH_SHORT).show();
-                        return;
-                    } else {
-                        Toast.makeText(FindPswActivity.this, "密保设置成功",
-                                Toast.LENGTH_SHORT).show();
-                        //保存密保到 SharedPreferences 文件中
-                        saveSecurity(validateName);
-                        FindPswActivity.this.finish();
-                    }
-                } else {//找回密码界面
-                    String userName = et_user_name.getText().toString().trim();
-                    String sp_security = readSecurity(userName);
-                    if (TextUtils.isEmpty(userName)) {
-                        Toast.makeText(FindPswActivity.this, "请输入您的用户名",
-                                Toast.LENGTH_SHORT).show();
-                        return;
-                    } else if (!UtilsHelper.isExistUserName(FindPswActivity.this,
-                            userName)) {
-                        Toast.makeText(FindPswActivity.this, "您输入的用户名不存在",
-                                Toast.LENGTH_SHORT).show();
-                        return;
-                    } else if (TextUtils.isEmpty(validateName)) {
-                        Toast.makeText(FindPswActivity.this, "请输入要验证的姓名",
-                                Toast.LENGTH_SHORT).show();
-                        return;
-                    } else if (!validateName.equals(sp_security)) {
-                        Toast.makeText(FindPswActivity.this, "输入的姓名不正确",
-                                Toast.LENGTH_SHORT).show();
-                        return;
-                    } else {
-                        //输入的密保正确，重新给用户设置一个密码
-                        tv_reset_psw.setVisibility(View.VISIBLE);
-                        tv_reset_psw.setText("初始密码：123a");
-                        UtilsHelper.saveUserInfo(FindPswActivity.this, userName,
-                                "123a");
-                    }
+        int id = view.getId();
+        if (id == R.id.tv_back) {
+            FindPswActivity.this.finish();
+        } else if (id == R.id.btn_validate) {
+            String validateName = et_validate_name.getText().toString().trim();
+            if ("security".equals(from)) {//设置密保界面
+                if (TextUtils.isEmpty(validateName)) {
+                    Toast.makeText(FindPswActivity.this, "请输入您的姓名",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    Toast.makeText(FindPswActivity.this, "密保设置成功",
+                            Toast.LENGTH_SHORT).show();
+                    //保存密保到 SharedPreferences 文件中
+                    saveSecurity(validateName);
+                    FindPswActivity.this.finish();
                 }
-                break;
+            } else {//找回密码界面
+                String userName = et_user_name.getText().toString().trim();
+                String sp_security = readSecurity(userName);
+                if (TextUtils.isEmpty(userName)) {
+                    Toast.makeText(FindPswActivity.this, "请输入您的用户名",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (!UtilsHelper.isExistUserName(FindPswActivity.this,
+                        userName)) {
+                    Toast.makeText(FindPswActivity.this, "您输入的用户名不存在",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (TextUtils.isEmpty(validateName)) {
+                    Toast.makeText(FindPswActivity.this, "请输入要验证的姓名",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (!validateName.equals(sp_security)) {
+                    Toast.makeText(FindPswActivity.this, "输入的姓名不正确",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    //输入的密保正确，重新给用户设置一个密码
+                    tv_reset_psw.setVisibility(View.VISIBLE);
+                    tv_reset_psw.setText("初始密码：123a");
+                    UtilsHelper.saveUserInfo(FindPswActivity.this, userName,
+                            "123a");
+                }
+            }
         }
     }
 }

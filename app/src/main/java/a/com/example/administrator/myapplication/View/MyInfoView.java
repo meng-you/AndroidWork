@@ -13,6 +13,7 @@ import android.widget.Toast;
 import a.com.example.administrator.myapplication.R;
 import a.com.example.administrator.myapplication.Utils.UtilsHelper;
 import a.com.example.administrator.myapplication.activity.LoginActivity;
+import a.com.example.administrator.myapplication.activity.ModifyPswActivity;
 import a.com.example.administrator.myapplication.activity.SettingActivity;
 
 public class MyInfoView implements View.OnClickListener {
@@ -46,34 +47,31 @@ public class MyInfoView implements View.OnClickListener {
     }
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.ll_head:
-                if (UtilsHelper.readLoginStatus(mContext)) {
-                    //跳转到个人资料界面
-                } else {
-                    //跳转到登录界面
-                    Intent intent = new Intent(mContext, LoginActivity.class);
-                    mContext.startActivityForResult(intent, 1);
-                }
-                break;
-            case R.id.rl_course_history:
-                if (UtilsHelper.readLoginStatus(mContext)) {
-                    //跳转到播放记录界面
-                } else {
-                    Toast.makeText(mContext, "您还未登录，请先登录",
-                            Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.rl_setting:
-                if (UtilsHelper.readLoginStatus(mContext)) {
-                    //跳转到设置界面
-                    Intent intent=new Intent(mContext,SettingActivity.class);
-                    mContext.startActivityForResult(intent,1);
-                } else {
-                    Toast.makeText(mContext, "您还未登录，请先登录",
-                            Toast.LENGTH_SHORT).show();
-                }
-                break;
+        int id = view.getId();
+        if (id == R.id.ll_head) {
+            if (UtilsHelper.readLoginStatus(mContext)) {
+                //跳转到个人资料界面
+            } else {
+                //跳转到登录界面
+                Intent intent = new Intent(mContext, LoginActivity.class);
+                mContext.startActivityForResult(intent, 1);
+            }
+        } else if (id == R.id.rl_course_history) {
+            if (UtilsHelper.readLoginStatus(mContext)) {
+                //跳转到播放记录界面
+            } else {
+                Toast.makeText(mContext, "您还未登录，请先登录",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }else if (id == R.id.rl_setting) {
+            if (UtilsHelper.readLoginStatus(mContext)) {
+                //跳转到设置界面
+                Intent intent=new Intent(mContext,SettingActivity.class);
+                mContext.startActivityForResult(intent,1);
+            } else {
+                Toast.makeText(mContext, "您还未登录，请先登录",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
     public View getView() {

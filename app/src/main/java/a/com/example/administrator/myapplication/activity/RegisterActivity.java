@@ -2,8 +2,7 @@ package a.com.example.administrator.myapplication.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -17,6 +16,8 @@ import android.widget.Toast;
 
 import a.com.example.administrator.myapplication.R;
 import a.com.example.administrator.myapplication.Utils.UtilsHelper;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextView tv_main_title; //标题

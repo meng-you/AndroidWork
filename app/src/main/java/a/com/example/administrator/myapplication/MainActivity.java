@@ -2,7 +2,6 @@ package a.com.example.administrator.myapplication;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,6 +16,7 @@ import a.com.example.administrator.myapplication.Utils.UtilsHelper;
 import a.com.example.administrator.myapplication.View.MyInfoView;
 import a.com.example.administrator.myapplication.activity.ModifyPswActivity;
 import a.com.example.administrator.myapplication.activity.SettingActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FrameLayout mBodyLayout; //中间内容栏

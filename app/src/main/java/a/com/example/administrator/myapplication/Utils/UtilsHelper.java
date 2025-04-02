@@ -2,7 +2,6 @@ package a.com.example.administrator.myapplication.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 import a.com.example.administrator.myapplication.activity.RegisterActivity;

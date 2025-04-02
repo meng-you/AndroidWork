@@ -3,7 +3,6 @@ package a.com.example.administrator.myapplication.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,6 +10,7 @@ import android.widget.Toast;
 
 import a.com.example.administrator.myapplication.R;
 import a.com.example.administrator.myapplication.Utils.UtilsHelper;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_main_title;

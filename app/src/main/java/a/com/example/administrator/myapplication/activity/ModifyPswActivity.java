@@ -2,8 +2,7 @@ package a.com.example.administrator.myapplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -16,6 +15,8 @@ import android.widget.Toast;
 import a.com.example.administrator.myapplication.R;
 import a.com.example.administrator.myapplication.Utils.MD5Utils;
 import a.com.example.administrator.myapplication.Utils.UtilsHelper;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class ModifyPswActivity extends AppCompatActivity implements View.OnClickListener {
     private String userName,spOriginalPsw,originalPsw,newPsw,newPswAgain;

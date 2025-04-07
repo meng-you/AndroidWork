@@ -51,6 +51,8 @@ public class MyInfoView implements View.OnClickListener {
         if (id == R.id.ll_head) {
             if (UtilsHelper.readLoginStatus(mContext)) {
                 //跳转到个人资料界面
+                Intent intent = new Intent(mContext,UserInfoActivity.class);
+                mContext.startActivity(intent);
             } else {
                 //跳转到登录界面
                 Intent intent = new Intent(mContext, LoginActivity.class);

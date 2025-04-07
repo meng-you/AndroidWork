@@ -15,6 +15,7 @@ import a.com.example.administrator.myapplication.Utils.UtilsHelper;
 import a.com.example.administrator.myapplication.activity.LoginActivity;
 import a.com.example.administrator.myapplication.activity.ModifyPswActivity;
 import a.com.example.administrator.myapplication.activity.SettingActivity;
+import a.com.example.administrator.myapplication.activity.UserInfoActivity;
 
 public class MyInfoView implements View.OnClickListener {
     private Activity mContext;
@@ -51,7 +52,7 @@ public class MyInfoView implements View.OnClickListener {
         if (id == R.id.ll_head) {
             if (UtilsHelper.readLoginStatus(mContext)) {
                 //跳转到个人资料界面
-                Intent intent = new Intent(mContext,UserInfoActivity.class);
+                Intent intent = new Intent(mContext, UserInfoActivity.class);
                 mContext.startActivity(intent);
             } else {
                 //跳转到登录界面

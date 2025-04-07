@@ -10,12 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import a.com.example.administrator.myapplication.Bean.UserBean;
+import a.com.example.administrator.myapplication.R;
 import a.com.example.administrator.myapplication.Utils.DBUtils;
 import a.com.example.administrator.myapplication.Utils.UtilsHelper;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class UserInfoActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
+public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_back;
     private TextView tv_main_title;
     private TextView tv_nickName, tv_signature, tv_user_name, tv_sex;
@@ -110,20 +111,17 @@ public class UserInfoActivity extends AppCompatActivity implements DialogInterfa
     }
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_back:      // "返回"按钮的点击事件
-                this.finish();
-                break;
-            case R.id.rl_nickName: // 昵称条目的点击事件
-                break;
-            case R.id.rl_sex:       // 性别条目的点击事件
-                String sex = tv_sex.getText().toString(); // 获取性别控件上的数据
-                sexDialog(sex);     // 设置性别数据
-                break;
-            case R.id.rl_signature:// 签名条目的点击事件
-                break;
-            default:
-                break;
+        int id = v.getId();
+        if (id == R.id.tv_back){
+            this.finish();// "返回"按钮的点击事件
+        } else if (id == R.id.rl_nickName) {
+            // 昵称条目的点击事件
+        }else if (id == R.id.rl_sex) {// 性别条目的点击事件
+            String sex = tv_sex.getText().toString(); // 获取性别控件上的数据
+            sexDialog(sex);     // 设置性别数据
+        }else if (id == R.id.rl_signature) {// 签名条目的点击事件
+
         }
+
     }
 }

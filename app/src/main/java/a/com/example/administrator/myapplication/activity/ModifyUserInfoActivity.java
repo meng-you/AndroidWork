@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import a.com.example.administrator.myapplication.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ModifyUserInfoActivity extends AppCompatActivity implements
@@ -108,35 +109,32 @@ public class ModifyUserInfoActivity extends AppCompatActivity implements
     }
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_back:
-                ModifyUserInfoActivity.this.finish();
-                break;
-            case R.id.iv_delete:
-                et_content.setText("");
-                break;
-            case R.id.tv_save:
-                Intent data = new Intent();
-                String etContent = et_content.getText().toString().trim();
-                switch (flag) {
-                    case 1:
-                        if (!TextUtils.isEmpty(etContent)) {
-                            EnterActivity(data, etContent, "nickName");
-                        } else {
-                            Toast.makeText(ModifyUserInfoActivity.this,
-                                    "昵称不能为空", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-                    case 2:
-                        if (!TextUtils.isEmpty(etContent)) {
-                            EnterActivity(data, etContent, "signature");
-                        } else {
-                            Toast.makeText(ModifyUserInfoActivity.this,
-                                    "签名不能为空", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-                }
-                break;
+        int id = view.getId();
+        if (id==R.id.tv_back){
+            ModifyUserInfoActivity.this.finish();
+        } else if (id==R.id.iv_delete) {
+            et_content.setText("");
+        } else if (id==R.id.tv_save) {
+            Intent data = new Intent();
+            String etContent = et_content.getText().toString().trim();
+            switch (flag) {
+                case 1:
+                    if (!TextUtils.isEmpty(etContent)) {
+                        EnterActivity(data, etContent, "nickName");
+                    } else {
+                        Toast.makeText(ModifyUserInfoActivity.this,
+                                "昵称不能为空", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                case 2:
+                    if (!TextUtils.isEmpty(etContent)) {
+                        EnterActivity(data, etContent, "signature");
+                    } else {
+                        Toast.makeText(ModifyUserInfoActivity.this,
+                                "签名不能为空", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+            }
         }
     }
     private void EnterActivity(Intent data, String etContent, String name) {

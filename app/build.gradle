@@ -10,6 +10,9 @@ android {
         versionCode 2
         versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a' // 只打包支持的架构
+        }
     }
     buildTypes {
         release {
@@ -17,17 +20,35 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/NOTICE.md'
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/io.netty.versions.properties'
+        pickFirst '**/libSparkChain.so'  // 确保选择 .aar 中的 .so 文件
+        // 或者合并所有 .so 文件（如果多个依赖冲突）
+        merge '**/libSparkChain.so'
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']  // 指定 libs 为 jniLibs 目录
+        }
+    }
 }
 
 dependencies {
+    implementation 'com.alibaba:fastjson:1.2.83'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.14'
+    implementation "androidx.activity:activity:1.8.0"
+    implementation 'com.hjq:xxpermissions:8.2'
+    implementation files('libs/SparkChain.aar')
+    api 'com.google.code.gson:gson:2.8.8'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.6.1'
-//    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-//    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.5.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

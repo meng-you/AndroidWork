@@ -1,9 +1,9 @@
 package a.com.example.administrator.myapplication.View;
 
+
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -12,11 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a.com.example.administrator.myapplication.Bean.ExercisesBean;
+import a.com.example.administrator.myapplication.R;
 import a.com.example.administrator.myapplication.Utils.Constant;
 import a.com.example.administrator.myapplication.Utils.JsonParse;
 import a.com.example.administrator.myapplication.adapter.ExercisesAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class ExercisesView {
     private RecyclerView rv_list;

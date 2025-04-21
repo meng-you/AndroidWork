@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import a.com.example.administrator.myapplication.Bean.ExercisesBean;
+import a.com.example.administrator.myapplication.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 

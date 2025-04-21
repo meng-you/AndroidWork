@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import a.com.example.administrator.myapplication.Utils.UtilsHelper;
+import a.com.example.administrator.myapplication.View.ExercisesView;
 import a.com.example.administrator.myapplication.View.MyInfoView;
 import a.com.example.administrator.myapplication.activity.ModifyPswActivity;
 import a.com.example.administrator.myapplication.activity.SettingActivity;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RelativeLayout rl_title_bar;
     private ImageView iv_course,iv_exercises,iv_myInfo;
     private MyInfoView mMyInfoView;
+    private ExercisesView mExercisesView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +118,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 1:
                 //习题界面
+                if (mExercisesView == null) {
+                    mExercisesView = new ExercisesView(this);
+                    mBodyLayout.addView(mExercisesView.getView());
+                // 加载习题界面
+                } else {
+                    mExercisesView.getView(); // 获取习题界面
+                }
+                mExercisesView.showView(); // 显示习题界面
                 break;
             case 2:
                 //“我”的界面

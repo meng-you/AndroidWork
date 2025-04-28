@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -13,6 +14,8 @@ import java.util.List;
 
 import a.com.example.administrator.myapplication.Bean.ExercisesBean;
 import a.com.example.administrator.myapplication.Bean.ExercisesDetailBean;
+import a.com.example.administrator.myapplication.R;
+import a.com.example.administrator.myapplication.Utils.UtilsHelper;
 import a.com.example.administrator.myapplication.adapter.ExercisesDetailAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,8 +59,113 @@ public class ExercisesDetailActivity extends AppCompatActivity {
                 ExercisesDetailActivity.this.finish();
             }
         });
-        adapter = new ExercisesDetailAdapter(ExercisesDetailActivity.this);
+        adapter = new ExercisesDetailAdapter(ExercisesDetailActivity.this,
+                new ExercisesDetailAdapter.OnSelectListener() {
+                    @Override
+                    public void onSelectD(int position, ImageView iv_a,
+                                          ImageView iv_b, ImageView iv_c, ImageView iv_d) {
+                        //判断如果答案不是 4 即 D 选项
+                        SelectValue(position,4);
+                        switch (detailList.get(position).getAnswer()) {
+                            case 1:
+                                iv_a.setImageResource(R.drawable.exercises_right_icon);
+                                iv_d.setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case 2:
+                                iv_d.setImageResource(R.drawable.exercises_error_icon);
+                                iv_b.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case 3:
+                                iv_d.setImageResource(R.drawable.exercises_error_icon);
+                                iv_c.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case 4:
+                                iv_d.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                        }
+                        UtilsHelper.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
+                    }
+                    @Override
+                    public void onSelectC(int position, ImageView iv_a,
+                                          ImageView iv_b, ImageView iv_c, ImageView iv_d) {
+                        //判断如果答案不是 3 即 C 选项
+                        SelectValue(position,3);
+                        switch (detailList.get(position).getAnswer()) {
+                            case 1:
+                                iv_a.setImageResource(R.drawable.exercises_right_icon);
+                                iv_c.setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case 2:
+                                iv_b.setImageResource(R.drawable.exercises_right_icon);
+                                iv_c.setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case 3:
+                                iv_c.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case 4:
+                                iv_c.setImageResource(R.drawable.exercises_error_icon);
+                                iv_d.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                        }
+                        UtilsHelper.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
+                    }
+                    @Override
+                    public void onSelectB(int position, ImageView iv_a,
+                                          ImageView iv_b, ImageView iv_c, ImageView iv_d) {
+                        //判断如果答案不是 2 即 B 选项
+                        SelectValue(position,2);
+                        switch (detailList.get(position).getAnswer()) {
+                            case 1:
+                                iv_a.setImageResource(R.drawable.exercises_right_icon);
+                                iv_b.setImageResource(R.drawable.exercises_error_icon);
+                                break;
+                            case 2:
+                                iv_b.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case 3:
+                                iv_b.setImageResource(R.drawable.exercises_error_icon);
+                                iv_c.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case 4:
+                                iv_b.setImageResource(R.drawable.exercises_error_icon);
+                                iv_d.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                        }
+                        UtilsHelper.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
+                    }
+                    @Override
+                    public void onSelectA(int position, ImageView iv_a,
+                                          ImageView iv_b, ImageView iv_c, ImageView iv_d) {
+                        //判断如果答案不是 1 即 A 选项
+                        SelectValue(position,1);
+                        switch (detailList.get(position).getAnswer()) {
+                            case 1:
+                                iv_a.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case 2:
+                                iv_a.setImageResource(R.drawable.exercises_error_icon);
+                                iv_b.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case 3:
+                                iv_a.setImageResource(R.drawable.exercises_error_icon);
+                                iv_c.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                            case 4:
+                                iv_a.setImageResource(R.drawable.exercises_error_icon);
+                                iv_d.setImageResource(R.drawable.exercises_right_icon);
+                                break;
+                        }
+                        UtilsHelper.setABCDEnable(false, iv_a, iv_b, iv_c, iv_d);
+                    }
+                });
         adapter.setData(detailList);
         lv_list.setAdapter(adapter);
+    }
+    private void SelectValue(int position,int option){
+        if (detailList.get(position).getAnswer() != option) {
+            detailList.get(position).setSelect(option);
+        } else {
+            detailList.get(position).setSelect(0);
+        }
     }
 }

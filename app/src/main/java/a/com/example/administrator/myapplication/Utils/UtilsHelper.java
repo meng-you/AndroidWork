@@ -3,6 +3,7 @@ package a.com.example.administrator.myapplication.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.widget.ImageView;
 
 import a.com.example.administrator.myapplication.activity.RegisterActivity;
 
@@ -106,5 +107,12 @@ public class UtilsHelper {
         //为真则表示同时有数字和字母
         boolean isPasswordValid = hasLetter && hasDigit;
         return isPasswordValid;
+    }
+    public static void setABCDEnable(boolean value,
+                                     ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d){
+        iv_a.setEnabled(value); //设置选项 A 的图片是否可被点击
+        iv_b.setEnabled(value); //设置选项 B 的图片是否可被点击
+        iv_c.setEnabled(value); //设置选项 C 的图片是否可被点击
+        iv_d.setEnabled(value); //设置选项 D 的图片是否可被点击
     }
 }

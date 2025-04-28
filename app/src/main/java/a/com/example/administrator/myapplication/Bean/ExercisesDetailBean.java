@@ -23,6 +23,12 @@ public class ExercisesDetailBean implements Serializable {
     public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
     }
+    public String getSubject() {
+        return subject;
+    }
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
     public String getA() {
         return a;
     }

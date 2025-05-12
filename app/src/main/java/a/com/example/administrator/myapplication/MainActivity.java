@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import a.com.example.administrator.myapplication.Utils.UtilsHelper;
+import a.com.example.administrator.myapplication.View.CourseView;
 import a.com.example.administrator.myapplication.View.ExercisesView;
 import a.com.example.administrator.myapplication.View.MyInfoView;
 import a.com.example.administrator.myapplication.activity.ModifyPswActivity;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView iv_course,iv_exercises,iv_myInfo;
     private MyInfoView mMyInfoView;
     private ExercisesView mExercisesView;
+    private CourseView mCourseView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +117,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (viewIndex) {
             case 0:
                 //课程界面
+                if (mCourseView == null) {
+                    mCourseView = new CourseView(this);
+                    // 加载课程界面
+                    mBodyLayout.addView(mCourseView.getView());
+                } else {
+                    // 加载课程界面
+                    mCourseView.getView();
+                }
+                mCourseView.showView(); // 显示课程界面
                 break;
             case 1:
                 //习题界面

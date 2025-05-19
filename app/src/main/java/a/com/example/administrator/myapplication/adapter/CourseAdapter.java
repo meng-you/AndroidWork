@@ -1,6 +1,7 @@
 package a.com.example.administrator.myapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import a.com.example.administrator.myapplication.Bean.CourseBean;
 import a.com.example.administrator.myapplication.R;
+import a.com.example.administrator.myapplication.activity.CourseDetailActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHolder> {
@@ -41,6 +43,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                 .load(bean.getChapterImg())
                 .error(R.mipmap.ic_launcher)
                 .into(holder.iv_img);
+
+        holder.iv_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到课程详情界面
+                Intent intent = new Intent(mContext, CourseDetailActivity.class);
+                intent.putExtra("CourseBean", bean);
+                mContext.startActivity(intent);
+            }
+        });
     }
     @Override
     public int getItemCount() {
@@ -55,13 +67,5 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             tv_title = view.findViewById(R.id.tv_title);
         }
     }
-    holder.iv_img.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            // 跳转到课程详情界面
-            Intent intent = new Intent(mContext, CourseDetailActivity.class);
-            intent.putExtra("CourseBean", bean);
-            mContext.startActivity(intent);
-        }
-    });
+
 }

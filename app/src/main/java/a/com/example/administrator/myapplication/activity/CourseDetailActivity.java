@@ -1,5 +1,26 @@
 package a.com.example.administrator.myapplication.activity;
 
+import android.graphics.Color;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
+
+import a.com.example.administrator.myapplication.Bean.CourseBean;
+import a.com.example.administrator.myapplication.Bean.VideoBean;
+import a.com.example.administrator.myapplication.R;
+import a.com.example.administrator.myapplication.Utils.DBUtils;
+import a.com.example.administrator.myapplication.Utils.UtilsHelper;
+import a.com.example.administrator.myapplication.adapter.CourseDetailAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class CourseDetailActivity extends AppCompatActivity implements
         View.OnClickListener{
     private TextView tv_intro, tv_video, tv_chapter_intro;
@@ -44,6 +65,7 @@ public class CourseDetailActivity extends AppCompatActivity implements
                             return;
                         }else{
                             // 判断用户是否登录，若登录则把此视频添加到数据库中
+                            UtilsHelper UtilsHelper = new UtilsHelper();
                             if(UtilsHelper.readLoginStatus(CourseDetailActivity.this)){
                                 String userName= UtilsHelper.readLoginUserName(
                                         CourseDetailActivity.this);
@@ -64,25 +86,21 @@ public class CourseDetailActivity extends AppCompatActivity implements
     }
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_intro:// 简介
-                rv_list.setVisibility(View.GONE);
-                sv_chapter_intro.setVisibility(View.VISIBLE);
-                tv_intro.setBackgroundResource(R.drawable.video_list_intro_blue);
-                tv_video.setBackgroundResource(R.drawable.video_list_intro_white);
-                tv_intro.setTextColor(Color.parseColor("#FFFFFF"));
-                tv_video.setTextColor(Color.parseColor("#000000"));
-                break;
-            case R.id.tv_video:// 视频
-                rv_list.setVisibility(View.VISIBLE);
-                sv_chapter_intro.setVisibility(View.GONE);
-                tv_intro.setBackgroundResource(R.drawable.video_list_intro_white);
-                tv_video.setBackgroundResource(R.drawable.video_list_intro_blue);
-                tv_intro.setTextColor(Color.parseColor("#000000"));
-                tv_video.setTextColor(Color.parseColor("#FFFFFF"));
-                break;
-            default:
-                break;
+        int id = v.getId();
+        if(id==R.id.tv_intro){// 简介
+            rv_list.setVisibility(View.GONE);
+            sv_chapter_intro.setVisibility(View.VISIBLE);
+            tv_intro.setBackgroundResource(R.drawable.video_list_intro_blue);
+            tv_video.setBackgroundResource(R.drawable.video_list_intro_white);
+            tv_intro.setTextColor(Color.parseColor("#FFFFFF"));
+            tv_video.setTextColor(Color.parseColor("#000000"));
+        } else if (id==R.id.tv_video) {// 视频
+            rv_list.setVisibility(View.VISIBLE);
+            sv_chapter_intro.setVisibility(View.GONE);
+            tv_intro.setBackgroundResource(R.drawable.video_list_intro_white);
+            tv_video.setBackgroundResource(R.drawable.video_list_intro_blue);
+            tv_intro.setTextColor(Color.parseColor("#000000"));
+            tv_video.setTextColor(Color.parseColor("#FFFFFF"));
         }
     }
 }

@@ -1,5 +1,6 @@
 package a.com.example.administrator.myapplication.adapter;
 
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import a.com.example.administrator.myapplication.Bean.VideoBean;
+import a.com.example.administrator.myapplication.R;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CourseDetailAdapter extends RecyclerView.Adapter<CourseDetailAdapter.
@@ -40,8 +42,18 @@ public class CourseDetailAdapter extends RecyclerView.Adapter<CourseDetailAdapte
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final VideoBean bean = vbl.get(position);
+        if (bean == null) {
+            return;
+        }
         holder.iv_icon.setImageResource(R.drawable.course_detail_list_icon);
         holder.tv_name.setTextColor(Color.parseColor("#333333"));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bean == null)return;
+                onSelectListener.onSelect(position, holder.iv_icon);
+            }
+        });
         if (bean != null) {
             holder.tv_name.setText(bean.getVideoName());
             // 设置条目被选中时的效果
@@ -53,13 +65,6 @@ public class CourseDetailAdapter extends RecyclerView.Adapter<CourseDetailAdapte
                 holder.tv_name.setTextColor(Color.parseColor("#333333"));
             }
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (bean == null)return;
-                onSelectListener.onSelect(position, holder.iv_icon);
-            }
-        });
     }
     @Override
     public int getItemCount() {

@@ -1,11 +1,14 @@
 package a.com.example.administrator.myapplication.Utils;
 
+
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import a.com.example.administrator.myapplication.Bean.UserBean;
+import a.com.example.administrator.myapplication.Bean.VideoBean;
 import a.com.example.administrator.myapplication.sqlite.SQLiteHelper;
 
 public class DBUtils {
@@ -39,6 +42,7 @@ public class DBUtils {
      * @param userName
      * @return
      */
+    @SuppressLint("Range")
     public UserBean getUserInfo(String userName) {
         String sql = "SELECT * FROM " + SQLiteHelper.U_USERINFO +
                 " WHERE userName=?";
@@ -97,7 +101,7 @@ public class DBUtils {
     }
 //保存视频播放记录信息到数据库
     public void saveVideoPlayList(int id,
-                                  String chapterName,VideoBean bean, String userName)
+                                  String chapterName, VideoBean bean, String userName)
     {
         // 判断如果里面有此播放记录则需删除重新存放
         if (hasVideoPlay(id, bean.getVideoId(),userName)) {

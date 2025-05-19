@@ -55,4 +55,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             tv_title = view.findViewById(R.id.tv_title);
         }
     }
+    holder.iv_img.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // 跳转到课程详情界面
+            Intent intent = new Intent(mContext, CourseDetailActivity.class);
+            intent.putExtra("CourseBean", bean);
+            mContext.startActivity(intent);
+        }
+    });
 }

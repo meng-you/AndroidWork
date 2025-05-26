@@ -72,7 +72,11 @@ public class CourseDetailActivity extends AppCompatActivity implements
                                 db.saveVideoPlayList(id,chapterName,videoList.get(position),
                                         userName);
                             }
-                            // 跳转到视频播放界面（待补充）
+                            // 跳转到视频播放界面
+                            Intent intent=new Intent(CourseDetailActivity.this,
+                                    VideoPlayActivity.class);
+                            intent.putExtra("videoPath", videoPath);
+                            startActivity(intent);
                         }
                     }
                 });

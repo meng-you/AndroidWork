@@ -62,6 +62,8 @@ public class MyInfoView implements View.OnClickListener {
         } else if (id == R.id.rl_course_history) {
             if (UtilsHelper.readLoginStatus(mContext)) {
                 //跳转到播放记录界面
+                Intent intent=new Intent(mContext,PlayHistoryActivity.class);
+                mContext.startActivity(intent);
             } else {
                 Toast.makeText(mContext, "您还未登录，请先登录",
                         Toast.LENGTH_SHORT).show();

@@ -121,4 +121,28 @@ public class DBUtils {
         cv.put("videoIcon", bean.getVideoIcon());
         db.insert(SQLiteHelper.U_VIDEO_PLAY_LIST, null, cv);
     }
+    //从数据库中获取视频播放记录的数据
+    public List<VideoBean> getVideoHistory(String userName) {
+        String sql = "SELECT * FROM " +
+                SQLiteHelper.U_VIDEO_PLAY_LIST+" WHERE userName=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{userName});
+        List<VideoBean> vbl = new ArrayList<>();
+        VideoBean bean = null;
+        while (cursor.moveToNext()) {
+            bean = new VideoBean();
+            bean.setVideoId(cursor.getInt
+                    (cursor.getColumnIndex("videoId")));
+            bean.setVideoPath(cursor.getString
+                    (cursor.getColumnIndex("videoPath")));
+            bean.setChapterName(cursor.getString
+                    (cursor.getColumnIndex("chapterName")));
+            bean.setVideoName(cursor.getString
+                    (cursor.getColumnIndex("videoName")));
+            bean.setVideoIcon(cursor.getString
+                    (cursor.getColumnIndex("videoIcon")));
+            vbl.add(bean);
+        }
+        cursor.close();
+        return vbl;
+    }
 }

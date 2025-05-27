@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 
 public class ModifyPswActivity extends AppCompatActivity implements View.OnClickListener {
     private String userName,spOriginalPsw,originalPsw,newPsw,newPswAgain;
-    private TextView tv_main_title,tv_back,tv_new_psw_msg;
+    private TextView tv_main_title,tv_back,tv_new_psw_msg,tv_search;
     private EditText et_original_psw,et_new_psw,et_new_psw_again;
     private Button btn_save;
     private boolean isPasswordValid = false;
@@ -37,6 +37,8 @@ public class ModifyPswActivity extends AppCompatActivity implements View.OnClick
         tv_main_title.setText("修改密码");
         tv_back= findViewById(R.id.tv_back);
         tv_new_psw_msg=findViewById(R.id.tv_new_psw_msg);
+        tv_search = findViewById(R.id.tv_search);
+        tv_search.setVisibility(View.GONE);
         et_original_psw= findViewById(R.id.et_original_psw);
         et_new_psw= findViewById(R.id.et_new_psw);
         et_new_psw_again= findViewById(R.id.et_new_psw_again);

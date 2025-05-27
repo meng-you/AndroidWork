@@ -1,5 +1,22 @@
 package a.com.example.administrator.myapplication.adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.List;
+
+import a.com.example.administrator.myapplication.Bean.VideoBean;
+import a.com.example.administrator.myapplication.R;
+import a.com.example.administrator.myapplication.activity.VideoPlayActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class PlayHistoryAdapter extends RecyclerView.Adapter<PlayHistoryAdapter.
         MyViewHolder> {
     private Context mContext;
@@ -33,7 +50,7 @@ public class PlayHistoryAdapter extends RecyclerView.Adapter<PlayHistoryAdapter.
             @Override
             public void onClick(View v) {
                 // 跳转到播放视频界面
-                Intent intent=new Intent(mContext,VideoPlayActivity.class);
+                Intent intent=new Intent(mContext, VideoPlayActivity.class);
                 intent.putExtra("videoPath", bean.getVideoPath());
                 mContext.startActivity(intent);
             }

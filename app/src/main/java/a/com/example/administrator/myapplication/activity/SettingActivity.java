@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_main_title;
-    private TextView tv_back;
+    private TextView tv_back,tv_search;
     private RelativeLayout rl_title_bar;
     private RelativeLayout rl_modify_psw,
             rl_security_setting, rl_exit_login;
@@ -30,6 +30,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         tv_main_title = findViewById(R.id.tv_main_title);
         tv_main_title.setText("设置");
         tv_back = findViewById(R.id.tv_back);
+        tv_search = findViewById(R.id.tv_search);
+        tv_search.setVisibility(View.GONE);
         rl_title_bar = findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor
                 (Color.parseColor("#30B4FF"));

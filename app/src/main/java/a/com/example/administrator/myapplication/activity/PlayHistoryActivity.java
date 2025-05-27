@@ -1,7 +1,26 @@
 package a.com.example.administrator.myapplication.activity;
 
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import a.com.example.administrator.myapplication.Bean.VideoBean;
+import a.com.example.administrator.myapplication.R;
+import a.com.example.administrator.myapplication.Utils.DBUtils;
+import a.com.example.administrator.myapplication.Utils.UtilsHelper;
+import a.com.example.administrator.myapplication.adapter.PlayHistoryAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class PlayHistoryActivity extends AppCompatActivity {
-    private TextView tv_main_title, tv_back,tv_none;
+    private TextView tv_main_title, tv_back,tv_none,tv_search;
     private RelativeLayout rl_title_bar;
     private RecyclerView rv_list;
     private PlayHistoryAdapter adapter;
@@ -23,6 +42,8 @@ public class PlayHistoryActivity extends AppCompatActivity {
         rl_title_bar = findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         tv_back = findViewById(R.id.tv_back);
+        tv_search = findViewById(R.id.tv_search);
+        tv_search.setVisibility(View.GONE);
         rv_list= findViewById(R.id.rv_list);
         tv_none= findViewById(R.id.tv_none);
         if(vbl.size()==0){

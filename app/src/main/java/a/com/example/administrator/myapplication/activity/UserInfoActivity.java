@@ -19,7 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView tv_back;
+    private TextView tv_back,tv_search;
     private TextView tv_main_title;
     private TextView tv_nickName, tv_signature, tv_user_name, tv_sex;
     private RelativeLayout rl_nickName, rl_sex, rl_signature, rl_title_bar;
@@ -43,6 +43,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
      */
     private void init() {
         tv_back = findViewById(R.id.tv_back);
+        tv_search = findViewById(R.id.tv_search);
+        tv_search.setVisibility(View.GONE);
         tv_main_title = findViewById(R.id.tv_main_title);
         tv_main_title.setText("个人资料");
         rl_title_bar = findViewById(R.id.title_bar);

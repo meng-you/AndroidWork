@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * 获取界面控件
      */
     private TextView tv_main_title;
-    private TextView tv_back;
+    private TextView tv_back,tv_search;
     private TextView tv_register;
     private TextView tv_find_psw;
     private Button btn_login;
@@ -40,6 +40,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tv_back = findViewById(R.id.tv_back);
         tv_register = findViewById(R.id.tv_register);
         tv_find_psw = findViewById(R.id.tv_find_psw);
+        tv_search = findViewById(R.id.tv_search);
+        tv_search.setVisibility(View.GONE);
         btn_login = findViewById(R.id.btn_login);
         et_user_name = findViewById(R.id.et_user_name);
         et_psw = findViewById(R.id.et_psw);

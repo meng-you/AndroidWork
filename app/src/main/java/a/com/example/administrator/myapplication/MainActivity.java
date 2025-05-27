@@ -16,7 +16,9 @@ import a.com.example.administrator.myapplication.Utils.UtilsHelper;
 import a.com.example.administrator.myapplication.View.CourseView;
 import a.com.example.administrator.myapplication.View.ExercisesView;
 import a.com.example.administrator.myapplication.View.MyInfoView;
+import a.com.example.administrator.myapplication.activity.ExercisesDetailActivity;
 import a.com.example.administrator.myapplication.activity.ModifyPswActivity;
+import a.com.example.administrator.myapplication.activity.SearchActivity;
 import a.com.example.administrator.myapplication.activity.SettingActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FrameLayout mBodyLayout; //中间内容栏
     public LinearLayout mBottomLayout; //底部按钮栏
     private View mCourseBtn,mExercisesBtn,mMyInfoBtn;
-    private TextView tv_back,tv_main_title,tv_course,tv_exercises,tv_myInfo;
+    private TextView tv_back,tv_main_title,tv_course,tv_exercises,tv_myInfo,tv_search;
     private RelativeLayout rl_title_bar;
     private ImageView iv_course,iv_exercises,iv_myInfo;
     private MyInfoView mMyInfoView;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void init() {
         tv_back = findViewById(R.id.tv_back);
+        tv_search = findViewById(R.id.tv_search);
         tv_main_title = findViewById(R.id.tv_main_title);
         tv_main_title.setText("移动程序设计课程");
         rl_title_bar = findViewById(R.id.title_bar);
@@ -60,6 +63,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         iv_course = findViewById(R.id.bottom_bar_image_course);
         iv_exercises = findViewById(R.id.bottom_bar_image_exercises);
         iv_myInfo = findViewById(R.id.bottom_bar_image_myinfo);
+        tv_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到 问答界面
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     /**
      * 设置底部按钮未被选中时的状态

@@ -1,5 +1,16 @@
 package a.com.example.administrator.myapplication.activity;
 
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.WindowManager;
+import android.widget.MediaController;
+import android.widget.Toast;
+import android.widget.VideoView;
+
+import a.com.example.administrator.myapplication.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class VideoPlayActivity extends AppCompatActivity {
     private VideoView videoView;
     private MediaController controller;

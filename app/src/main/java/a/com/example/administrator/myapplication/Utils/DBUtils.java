@@ -7,6 +7,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import a.com.example.administrator.myapplication.Bean.UserBean;
 import a.com.example.administrator.myapplication.Bean.VideoBean;
 import a.com.example.administrator.myapplication.sqlite.SQLiteHelper;

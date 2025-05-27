@@ -21,7 +21,7 @@ import androidx.core.content.ContextCompat;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextView tv_main_title; //标题
-    private TextView tv_back; //"返回"按钮
+    private TextView tv_back,tv_search; //"返回"按钮
     private Button btn_register; //"注册"按钮
     private TextView tv_user_name_msg;//用户名提示
     private TextView tv_psw_msg;//密码提示
@@ -44,6 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
         //设置注册界面标题为“注册”
         tv_main_title.setText("注册");
         tv_back = findViewById(R.id.tv_back);
+        tv_search = findViewById(R.id.tv_search);
+        tv_search.setVisibility(View.GONE);
         rl_title_bar = findViewById(R.id.title_bar);
         //设置标题栏背景颜色为透明
         rl_title_bar.setBackgroundColor(Color.TRANSPARENT);

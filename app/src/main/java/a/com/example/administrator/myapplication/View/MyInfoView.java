@@ -14,6 +14,7 @@ import a.com.example.administrator.myapplication.R;
 import a.com.example.administrator.myapplication.Utils.UtilsHelper;
 import a.com.example.administrator.myapplication.activity.LoginActivity;
 import a.com.example.administrator.myapplication.activity.ModifyPswActivity;
+import a.com.example.administrator.myapplication.activity.PlayHistoryActivity;
 import a.com.example.administrator.myapplication.activity.SettingActivity;
 import a.com.example.administrator.myapplication.activity.UserInfoActivity;
 
@@ -62,7 +63,7 @@ public class MyInfoView implements View.OnClickListener {
         } else if (id == R.id.rl_course_history) {
             if (UtilsHelper.readLoginStatus(mContext)) {
                 //跳转到播放记录界面
-                Intent intent=new Intent(mContext,PlayHistoryActivity.class);
+                Intent intent=new Intent(mContext, PlayHistoryActivity.class);
                 mContext.startActivity(intent);
             } else {
                 Toast.makeText(mContext, "您还未登录，请先登录",

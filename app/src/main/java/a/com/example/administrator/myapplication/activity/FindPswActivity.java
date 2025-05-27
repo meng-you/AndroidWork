@@ -15,7 +15,7 @@ import a.com.example.administrator.myapplication.Utils.UtilsHelper;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class FindPswActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView tv_main_title,tv_back,tv_reset_psw,tv_user_name;
+    private TextView tv_main_title,tv_back,tv_reset_psw,tv_user_name,tv_search;
     private EditText et_validate_name,et_user_name;
     private Button btn_validate;
     private String from;
@@ -30,6 +30,8 @@ public class FindPswActivity extends AppCompatActivity implements View.OnClickLi
     private void init() {
         tv_main_title = findViewById(R.id.tv_main_title);
         tv_back = findViewById(R.id.tv_back);
+        tv_search = findViewById(R.id.tv_search);
+        tv_search.setVisibility(View.GONE);
         et_validate_name = findViewById(R.id.et_validate_name);
         btn_validate = findViewById(R.id.btn_validate);
         tv_reset_psw = findViewById(R.id.tv_reset_psw);

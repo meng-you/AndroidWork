@@ -21,7 +21,7 @@ public class ModifyUserInfoActivity extends AppCompatActivity implements
         View.OnClickListener{
     private TextView tv_main_title, tv_save;
     private RelativeLayout rl_title_bar;
-    private TextView tv_back;
+    private TextView tv_back,tv_search;
     private String title, content;
     private int flag; //flag 为 1 时表示修改昵称，为 2 时表示修改签名
     private EditText et_content;
@@ -41,6 +41,8 @@ public class ModifyUserInfoActivity extends AppCompatActivity implements
         rl_title_bar = findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         tv_back = findViewById(R.id.tv_back);
+        tv_search = findViewById(R.id.tv_search);
+        tv_search.setVisibility(View.GONE);
         tv_save = findViewById(R.id.tv_save);
         tv_save.setVisibility(View.VISIBLE);
         et_content = findViewById(R.id.et_content);

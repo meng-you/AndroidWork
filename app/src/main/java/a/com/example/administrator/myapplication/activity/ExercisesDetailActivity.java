@@ -1,5 +1,6 @@
 package a.com.example.administrator.myapplication.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +24,7 @@ public class ExercisesDetailActivity extends AppCompatActivity {
     ExercisesBean bean;
     String title;
     private List<ExercisesDetailBean> detailList;
-    private TextView tv_main_title,tv_back;
+    private TextView tv_main_title,tv_back,tv_search;
     private RelativeLayout rl_title_bar;
     private ListView lv_list;
     ExercisesDetailAdapter adapter;
@@ -43,6 +44,7 @@ public class ExercisesDetailActivity extends AppCompatActivity {
     private void init() {
         tv_main_title = findViewById(R.id.tv_main_title);
         tv_back = findViewById(R.id.tv_back);
+        tv_search = findViewById(R.id.tv_search);
         rl_title_bar = findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         lv_list = findViewById(R.id.lv_list);
@@ -57,6 +59,14 @@ public class ExercisesDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ExercisesDetailActivity.this.finish();
+            }
+        });
+        tv_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到 问答界面
+                Intent intent = new Intent(ExercisesDetailActivity.this, SearchActivity.class);
+                startActivity(intent);
             }
         });
         adapter = new ExercisesDetailAdapter(ExercisesDetailActivity.this,

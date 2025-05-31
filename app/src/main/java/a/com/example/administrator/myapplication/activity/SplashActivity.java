@@ -27,15 +27,15 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         init();
     }
-    private void init(){
+    private void init() {
         //获取显示版本号信息的控件tv_version
-        tv_version=findViewById(R.id.tv_version);
+        tv_version = findViewById(R.id.tv_version);
         try {
             //获取程序包信息
-            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(),0);
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
             //将程序版本号信息设置到界面控件上
-            tv_version.setText("V"+info.versionName);
-        }catch (PackageManager.NameNotFoundException e){
+            tv_version.setText("V" + info.versionName);
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             tv_version.setText("V");
         }
@@ -45,23 +45,23 @@ public class SplashActivity extends AppCompatActivity {
         task = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 SplashActivity.this.finish();
             }
         };
         //设置程序延迟 3 秒之后自动执行任务 task
-        timer.schedule(task,3000);
+        timer.schedule(task, 3000);
         //设置点击事件,点击按钮也可以关闭开屏画面，实现界面跳转
         close_button = findViewById(R.id.close_button);
-        close_button.setOnClickListener(new View.OnClickListener(){
-             public void onClick(View view){
-                 // 取消定时任务
-                 task.cancel();
-                 timer.cancel(); // 需要同时取消Timer，因为TimerTask.cancel()只能取消单个任务
-                 Intent intent = new Intent(SplashActivity.this,MainActivity.class);
-                 startActivity(intent);
-                 SplashActivity.this.finish();
+        close_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // 取消定时任务
+                task.cancel();
+                timer.cancel(); // 需要同时取消Timer，因为TimerTask.cancel()只能取消单个任务
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                SplashActivity.this.finish();
             }
         });
     }
